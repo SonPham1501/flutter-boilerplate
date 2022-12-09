@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/constants/env_configs.dart';
 import 'package:flutter_boilerplate/ui/my_app.dart';
 
 import 'constants/enum.dart';
@@ -11,6 +12,7 @@ void bootstraps({required Environment environment}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await setPreferredOrientations();
   await setupLocator();
+  EnvConfig.setEnvironment(environment);
   return runZonedGuarded(() async {
     runApp(MyApp(env: environment));
   }, (error, stack) {
