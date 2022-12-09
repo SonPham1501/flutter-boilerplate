@@ -87,6 +87,18 @@ dependencies:
   #Easily restart your application from scratch, losing any previous state.
   flutter_phoenix: ^1.1.0
 
+  flutter_check_version_app:
+    git:
+      url: https://github.com/SonPham1501/flutter_check_version_app.git
+
+  base_extends:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-extends.git
+
+  base_dottedborder:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-dottedborder.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
