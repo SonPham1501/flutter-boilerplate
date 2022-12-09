@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/app_theme.dart';
+import '../constants/enum.dart';
 import '../constants/strings.dart';
 import '../data/repository.dart';
 import '../di/components/service_locator.dart';
@@ -25,43 +27,47 @@ class MyApp extends StatelessWidget {
   final LanguageStore _languageStore = LanguageStore(getIt<Repository>());
   final UserStore _userStore = UserStore(getIt<Repository>());
 
-  MyApp({Key? key}) : super(key: key);
+  final Environment env;
+
+  MyApp({Key? key, required this.env}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<ThemeStore>(create: (_) => _themeStore),
-        Provider<PostStore>(create: (_) => _postStore),
-        Provider<LanguageStore>(create: (_) => _languageStore),
-      ],
-      child: Observer(
-        name: 'global-observer',
-        builder: (context) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: Strings.appName,
-            theme: _themeStore.darkMode
+    return Phoenix(
+      child: MultiProvider(
+        providers: [
+          Provider<ThemeStore>(create: (_) => _themeStore),
+          Provider<PostStore>(create: (_) => _postStore),
+          Provider<LanguageStore>(create: (_) => _languageStore),
+        ],
+        child: Observer(
+          name: 'global-observer',
+          builder: (context) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: env == Environment.DEV,
+              title: Strings.appName,
+              theme: _themeStore.darkMode
                 ? AppThemeData.darkThemeData
                 : AppThemeData.lightThemeData,
-            routes: Routes.routes,
-            locale: Locale(_languageStore.locale),
-            supportedLocales: _languageStore.supportedLanguages
+              routes: Routes.routes,
+              locale: Locale(_languageStore.locale),
+              supportedLocales: _languageStore.supportedLanguages
                 .map((language) => Locale(language.locale!, language.code))
                 .toList(),
-            localizationsDelegates: const [
-              // A class which loads the translations from JSON files
-              AppLocalizations.delegate,
-              // Built-in localization of basic text for Material widgets
-              GlobalMaterialLocalizations.delegate,
-              // Built-in localization for text direction LTR/RTL
-              GlobalWidgetsLocalizations.delegate,
-              // Built-in localization of basic text for Cupertino widgets
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            home: _userStore.isLoggedIn ? const HomeScreen() : const LoginScreen(),
-          );
-        },
+              localizationsDelegates: const [
+                // A class which loads the translations from JSON files
+                AppLocalizations.delegate,
+                // Built-in localization of basic text for Material widgets
+                GlobalMaterialLocalizations.delegate,
+                // Built-in localization for text direction LTR/RTL
+                GlobalWidgetsLocalizations.delegate,
+                // Built-in localization of basic text for Cupertino widgets
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              home: _userStore.isLoggedIn ? const HomeScreen() : const LoginScreen(),
+            );
+          },
+        ),
       ),
     );
   }

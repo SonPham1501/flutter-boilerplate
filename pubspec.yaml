@@ -84,6 +84,9 @@ dependencies:
 
   google_fonts: ^3.0.1
 
+  #Easily restart your application from scratch, losing any previous state.
+  flutter_phoenix: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
