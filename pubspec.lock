@@ -43,6 +43,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  base_autosize:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: d052541b472fe12e0ee9180a16806fdc6c207718
+      url: "https://github.com/SonPham1501/flutter-base-autosize.git"
+    source: git
+    version: "0.0.1"
   base_dottedborder:
     dependency: "direct main"
     description:
@@ -59,6 +68,42 @@ packages:
       ref: HEAD
       resolved-ref: "4e74e8f9905f239731a2d08b5fbd32d001a8f06d"
       url: "https://github.com/SonPham1501/flutter-base-extends.git"
+    source: git
+    version: "0.0.1"
+  base_graphql:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a662ce1047ab38ca73372490b530909cbde013a4
+      url: "https://github.com/SonPham1501/flutter-base-graphql.git"
+    source: git
+    version: "0.0.1"
+  base_navigation:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "93a9b4915201b1126a8af817524e9f085b93d4c8"
+      url: "https://github.com/SonPham1501/flutter-base-navigation.git"
+    source: git
+    version: "0.0.1"
+  base_utils:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "38879329282b363f8898be73f8c5d0286fc4950e"
+      url: "https://github.com/SonPham1501/flutter-base-utils.git"
+    source: git
+    version: "0.0.1"
+  base_widgets:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: aa81abc681d6164014a8f922ebbfd21f693d1dd5
+      url: "https://github.com/SonPham1501/flutter-base-widgets.git"
     source: git
     version: "0.0.1"
   boolean_selector:
@@ -335,6 +380,62 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  gql:
+    dependency: transitive
+    description:
+      name: gql
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.1"
+  gql_dedupe_link:
+    dependency: transitive
+    description:
+      name: gql_dedupe_link
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  gql_error_link:
+    dependency: transitive
+    description:
+      name: gql_error_link
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2"
+  gql_exec:
+    dependency: transitive
+    description:
+      name: gql_exec
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
+  gql_http_link:
+    dependency: transitive
+    description:
+      name: gql_http_link
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2"
+  gql_link:
+    dependency: transitive
+    description:
+      name: gql_link
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.2"
+  gql_transform_link:
+    dependency: transitive
+    description:
+      name: gql_transform_link
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.2"
+  graphql:
+    dependency: transitive
+    description:
+      name: graphql
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.1"
   graphs:
     dependency: transitive
     description:
@@ -342,6 +443,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.3"
   html:
     dependency: transitive
     description:
@@ -475,6 +583,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  normalize:
+    dependency: transitive
+    description:
+      name: normalize
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0+1"
   package_config:
     dependency: transitive
     description:
@@ -657,6 +772,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.7"
   sembast:
     dependency: "direct main"
     description:
@@ -872,6 +994,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.7"
   validators:
     dependency: "direct main"
     description:

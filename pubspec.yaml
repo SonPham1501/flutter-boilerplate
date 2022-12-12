@@ -99,6 +99,26 @@ dependencies:
     git:
       url: https://github.com/SonPham1501/flutter-base-dottedborder.git
 
+  base_autosize:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-autosize.git
+
+  base_utils:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-utils.git
+
+  base_navigation:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-navigation.git
+
+  base_graphql:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-graphql.git
+
+  base_widgets:
+    git:
+      url: https://github.com/SonPham1501/flutter-base-widgets.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

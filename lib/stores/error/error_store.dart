@@ -1,3 +1,6 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'error_store.g.dart';
@@ -24,12 +27,12 @@ abstract class _ErrorStore with Store {
   // actions:-------------------------------------------------------------------
   @action
   void setErrorMessage(String message) {
-    this.errorMessage = message;
+    errorMessage = message;
   }
 
   @action
   void reset(String value) {
-    print('calling reset');
+    debugPrint('calling reset');
     errorMessage = '';
   }
 

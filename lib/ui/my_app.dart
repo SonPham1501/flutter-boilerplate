@@ -1,3 +1,4 @@
+import 'package:base_navigation/base_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: env == Environment.DEV,
               title: Strings.appName,
+              navigatorKey: getIt<Navigation>().navigatorKey,
               theme: _themeStore.darkMode
                 ? AppThemeData.darkThemeData
                 : AppThemeData.lightThemeData,

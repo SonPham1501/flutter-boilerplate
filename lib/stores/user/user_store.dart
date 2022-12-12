@@ -1,3 +1,6 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../data/repository.dart';
@@ -71,7 +74,7 @@ abstract class _UserStore with Store {
         print('failed to login');
       }
     }).catchError((e) {
-      print(e);
+      debugPrint(e);
       isLoggedIn = false;
       success = false;
       throw e;
