@@ -1,0 +1,3 @@
+mutation DongYGiaThamDinh_KinhDoanh($idHoSoYeuCau: BigInt!) {
+  dongYGiaThamDinh_KinhDoanh(idHoSoYeuCau: $idHoSoYeuCau)
+}

@@ -1,0 +1,1577 @@
+scalar BigInt
+
+scalar Double
+
+scalar Date
+
+type Query {
+  account: Account
+  getSuggestBDS(data: String!): [BatDongSanSuggest]
+  searchBDS(data: ParamSearchBDS!, page: Int = 0, size: Int = 5): [PageResultSearchHouse]
+  getListAddress(type: String!, idPrev: Int!, ngo: String): [Address]
+  detailBDS(idBDS: BigInt!, idThuaDat: BigInt): DetailBDS
+  detailQuyHoachBDS(idBDS: BigInt!, idThuaDat: BigInt!): DetailQuyHoachBDS
+  detailUocLuongGiaBDS(idBDS: BigInt!, idThuaDat: BigInt!): DetailUocLuongGiaBDS
+  getSearchHistory(userId: BigInt!, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PageTraCuuGiaHistory
+  danhSachMucDichThamDinh(typeRequest: String = "app"): [MucDichThamDinh]
+  danhSachNganHang: [NganHang]
+  danhSachChiNhanhVanPhong: [ChiNhanh]
+  getNumberRequestRemaining: SoLuotTraCuu
+  getDanhSachNghiepVu(vanPhongId: BigInt!): [InfoUser]
+  getDanhSachKiemSoatVien(vanPhongId: BigInt!): [InfoUser]
+  getDanhSachNhanVienKinhDoanh(vanPhongId: BigInt!): [InfoUser]
+  getLogTrangThaiHoSoYeuCau(idHoSoYeuCau: BigInt!, typeApp: String!): [LogTrangThaiHoSoYeuCau]
+  _empty: String
+  danhSachYeuCauThamDinh_TinDung(isYeuCauSoBo: Boolean, tenTaiSan: String, status: [String], loaiTaiSan: [String], thoiGianYeuCauTu: String, thoiGianYeuCauDen: String, isDaCoFileMem: Boolean, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PageYeuCauThamDinh
+  yeuCauThamDinh_TinDung(idYeuCau: BigInt!, isGoiTaiSan: Boolean = false): YeuCauThamDinh
+  chiTietGoiTaiSan(idGoiTaiSan: BigInt!): ChiTietGoiTaiSan
+  chiTietHoSoYeuCau(idHoSoYeuCau: BigInt!): ChiTietHoSoYeuCau
+  getPhanHoiDanhGia(idHoSoYeuCau: BigInt, idGoiTaiSan: BigInt, idNguoiGui: BigInt, rate: BigInt, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PagePhanHoiDanhGia
+  getThongKeHieuSuatChung(frequency: String!, type: String!): ThongKeHieuSuatChung
+  getThongKeHieuSuatHoSoThamDinh(frequency: String!, type: String!, cycle: Int!): ThongKeHieuSuatHoSoThamDinh
+  getThongKeHieuSuatThoiGianXuLy(frequency: String!, type: String!, cycle: Int!): ThongKeHieuSuatThoiGianXuLy
+  getThongKeHieuSuatPhiThamDinh(frequency: String!, type: String!, cycle: Int!): ThongKeHieuSuatPhiThamDinh
+  getThongKeHieuSuatPhanHoiDanhGia(type: String!, thoiGianYeuCauFrom: Date, thoiGianYeuCauTo: Date, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PagePhanHoiDanhGia
+  getListThongBaoThayDoiTrangThaiHSYC(amount: BigInt!, page: Int!): PageMessageNotification
+  checkNewNotification(amount: BigInt): StatusNewNotifications
+  danhSachYeuCauThamDinh_KinhDoanh(idHSYC: BigInt, soHopDong: String, isYeuCauSoBo: Boolean, tenTaiSan: String, status: [String], loaiTaiSan: [String], thoiGianYeuCauTu: String, thoiGianYeuCauDen: String, isDaCoFileMem: Boolean, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PageYeuCauThamDinh
+  danhSachHoSoChoTiepNhan_KinhDoanh(isYeuCauSoBo: Boolean, idNganHang: BigInt, idChiNhanhNganHang: BigInt, thoiGianYeuCauTu: String, thoiGianYeuCauDen: String, nguoiGui: String, khachHang: String, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PageYeuCauThamDinh
+  chiTietHoSoYeuCau_KinhDoanh(idHoSoYeuCau: BigInt!): ChiTietHoSoYeuCau
+  getListThongBaoAppKinhDoanh(amount: BigInt!, page: Int!): PageMessageNotification
+  checkNewNotificationAppKinhDoanh(amount: BigInt): StatusNewNotifications
+  getThongTinHoSoYeuCau(idHoSoYeuCau: BigInt): ThongTinHoSoYeuCau
+  getBangTinh(idHoSoYeuCau: BigInt!): String
+  danhSachHoSoNghiepVu(all: Boolean, diaDiemThamDinhGia: String, vanPhongId: BigInt, chiNhanhId: BigInt, idUser: BigInt, bdsStatus: [String], isThamDinhSoBo: Boolean, isThamDinhToanBo: Boolean, tenKhachHang: String, idNVKD: BigInt, soHopDong: String, idHSYC: BigInt, thoiGianYeuCauTu: String, thoiGianYeuCauDen: String, hoSoQuaHan: Boolean, page: Int = 0, size: Int = 5, sort: String = "id,desc"): PageHoSoNghiepVu
+  getThongTinKhaoSat(idHSYC: BigInt!): KhaoSatTaiSanExtend
+  suggestAddress(catType: String = "nha_dat_collect", data: String!): [SuggestAddress]
+  advancedSearch(tinhId: BigInt, quanHuyenId: BigInt, phuongXaId: BigInt, duongId: BigInt, ngo: BigInt, ngachHem: BigInt, soNha: String, toaDoDanhDau: String, soToBanDo: String, soThua: String, soToBanDoCu: String, soThuaCu: String, northEast: GPSLocation, southWest: GPSLocation): [InfoViTriThuaDat]
+  getInfoTaiSan(idThuaDat: BigInt!): InfoTaiSan
+  getThuaDatByToaDo(lat: Double!, lon: Double!): InfoViTriThuaDat
+  getPolygonByKhuVuc(type: String = "phuong", id: BigInt): [InfoKhuVuc]
+}
+
+type Mutation {
+  _empty: String
+  storeSearchHistory(infoTraCuuGia: InfoTraCuuGiaInput): String
+  addFCMtoken(firebaseToken: FirebaseTokenInput): String
+  submitYeuCauThamDinhTinDung(yeuCauThamDinh: YeuCauThamDinhInput, danhSachAlbumTaiLieu: [AlbumTaiLieuInput]): String
+  uploadTaiLieuLienQuan(danhSachAlbumTaiLieu: [AlbumTaiLieuInput]): String
+  khongDongYGiaThamDinh(idHoSoYeuCau: BigInt!, phanHoi: String): String
+  khongDongYGiaThamDinhGoiTaiSan(idGoiTaiSan: BigInt!, phanHoi: String): String
+  guiYeuCauThamDinhHoSoSoBo(idYeuCau: BigInt, isGoiTaiSan: Boolean): String
+  dongYGiaThamDinhToanBo(idHoSoYeuCau: BigInt!): String
+  dongYGiaThamDinhToanBoGoiTaiSan(idGoiTaiSan: BigInt!): String
+  themPhanHoiDanhGia(phanHoiDanhGia: PhanHoiDanhGiaInput): String
+  updatePhanHoiDanhGia(phanHoiDanhGia: PhanHoiDanhGiaInput): String
+  removeFCMtoken(token: String!, userId: BigInt!): String
+  docThongBaoThayDoiTrangThaiHSYC(readAll: Boolean!, messageId: String!): String
+  submitYeuCauThamDinh(yeuCauThamDinh: YeuCauThamDinhFullInput, danhSachAlbumTaiLieu: [AlbumTaiLieuInput]): String
+  editThongTinHoSoYeuCau(thongTinHoSoYeuCau: ThongTinHoSoYeuCauInput!): String
+  tiepNhanHoSoYeuCau(idHoSoYeuCau: BigInt!): String
+  khongDongYGiaThamDinh_KinhDoanh(idHoSoYeuCau: BigInt!, phanHoi: String): String
+  dongYGiaThamDinh_KinhDoanh(idHoSoYeuCau: BigInt!): String
+  removeFCMtokenAppKinhDoanh(token: String!, userId: BigInt!): String
+  docThongBaoAppKinhDoanh(readAll: Boolean!, messageId: String!): String
+  xacNhanPhiTamUngHoSo(idHoSoYeuCau: BigInt!): String
+  huyHoSo(idHoSoYeuCau: BigInt!, ghiChu: String): String
+  tiepNhanPhanCong(idHoSo: BigInt!, phanHoi: String!, vanPhongId: BigInt!, canDiKhaoSat: Boolean): String
+  xacNhanLienHeKhaoSat(idHoSo: BigInt!, thoiGianKhaoSat: String, coDiQuaDem: Boolean): String
+  batDauKhaoSat(idHoSo: BigInt!): String
+  hoanThanhKhaoSat(idHoSo: BigInt!): String
+  luuThongTinKhaoSat(khaoSatTaiSanExtend: KhaoSatTaiSanExtendInput): KhaoSatTaiSanExtend
+  capNhatAnhKhaoSat(albumHinhAnhTaiSan: AlbumHinhAnhTaiSanInput): AlbumHinhAnhTaiSan
+  submitOnlyAddress(bdsSubmit: BdsSubmitInput): IdBds
+}
+
+type MucDichThamDinh {
+  id: BigInt
+  ten: String
+}
+
+type ChiNhanh {
+  id: BigInt
+  name: String
+  vanPhongs: [VanPhong]
+}
+
+type VanPhong {
+  id: BigInt
+  name: String
+}
+
+input InfoTraCuuGiaInput {
+  idBDS: BigInt
+  idThuaDat: BigInt
+  tieuDe: String
+  soNha: String
+  dlNgachHem: String
+  dlNgo: String
+  dlXa: String
+  dlDuong: String
+  dlHuyen: String
+  dlTinh: String
+  giaCTXD: Float
+  giaDatMoHinh: Float
+  idUser: BigInt
+  nameUser: String
+}
+
+type InfoUser {
+  id: BigInt
+  fullName: String
+  userName: String
+  phone: String
+}
+
+type Account {
+  id: BigInt
+  userId: BigInt
+  username: String
+  activated: Boolean
+  authorities: [String]
+  email: String
+  fullName: String
+  firstName: String
+  lastName: String
+  mobile: String
+  chiNhanhNganHang: ChiNhanhNganHang
+  chiNhanhUsersDTOList: [ChiNhanhUser]
+  partnerGroupUserDTOList: [PartnerGroupUser]
+  phuongXaUserDTOList: [PhuongXaUser]
+  quyenNhomQuyenDTOList: [QuyenNhomQuyen]
+  subordinates: [BigInt]
+  vanPhongUsersDTOList: [VanPhongUser]
+}
+
+enum LoaiThongBao {
+  APP_TIN_DUNG
+  APP_KINH_DOANH
+}
+
+type QuyenNhomQuyen {
+  id: BigInt
+  quyen: String
+  idQuyenDoanhNghiep: BigInt
+  thoiGianTao: String
+  idTinh: BigInt
+  idQuan: BigInt
+  idPhuong: BigInt
+  tenKhuVuc: String
+  nhomQuyenId: BigInt
+}
+
+type PartnerGroupUser {
+  id: BigInt
+  partnerGroupId: BigInt
+  quyen: String
+  userId: BigInt
+}
+
+type PhuongXaUser {
+  id: BigInt
+  phuongXaTen: String
+  phuongXaId: BigInt
+  quyen: String
+  status: Boolean
+  username: String
+  fullname: String
+  tinh: String
+  tinhId: BigInt
+  userId: BigInt
+}
+
+type ChiNhanhNganHang {
+  id: BigInt
+  ten: String
+  idTPTinDung: BigInt
+  nameTPTinDung: String
+  idNganHang: BigInt
+  nganHang: NganHang
+}
+
+type NganHang {
+  id: BigInt
+  ten: String
+  tenVietTat: String
+  tenGiaoDich: String
+}
+
+type ChiNhanhUser {
+  id: BigInt
+  chiNhanhId: BigInt
+  quyen: String
+  userId: BigInt
+}
+
+type VanPhongUser {
+  id: BigInt
+  vanPhongId: BigInt
+  quyen: String
+  userId: BigInt
+}
+
+type BatDongSanSuggest {
+  idBDS: BigInt
+  tieuDe: String
+}
+
+type DetailBDS {
+  congTrinhSubmitDTOSet: CongTrinhSubmitDTOSet
+  batDongSanDTO: BatDongSanDTO
+  infoThuaDat: InfoThuaDat
+  infoThuaDatDinhGia: ThongTinThuaDat
+}
+
+type DetailQuyHoachBDS {
+  congTrinhSubmitDTOSet: CongTrinhSubmitDTOSet
+  batDongSanDTO: BatDongSanDTO
+  infoQuyHoach: InfoQuyHoach
+}
+
+type DetailUocLuongGiaBDS {
+  congTrinhSubmitDTOSet: CongTrinhSubmitDTOSet
+  batDongSanDTO: BatDongSanDTO
+  infoUocLuongGia: InfoUocLuongGia
+}
+
+type InfoThuaDatXungQuanh {
+  canhBao: String
+  display: String
+  duong_id: String
+  hasPrice: Boolean
+  id: BigInt
+  location: GPSInfo
+  phuong_id: BigInt
+  timestamp: Float
+  url_anh_ban_do_dia_chinh: String
+}
+
+type CongTrinhSubmitDTOSet {
+  congTrinhDTO: CongTrinhDTO
+}
+
+input CongTrinhSubmitDTOSetInput {
+  congTrinhDTO: CongTrinhDTOInput
+}
+
+type CongTrinhDTO {
+  id: BigInt
+  soNha: String
+  soTangSan: Float
+  soTangNha: Float
+  soHam: String
+  huongNhaId: Int
+  urlAnhMatTien: String
+  urlAnhTongThe: String
+  urlAnhMatNgang: String
+  loaiCongTrinhId: Int
+  mucDichSuDung: [Int]
+  danhSachAnh: [danhSachAnhCongTrinh]
+}
+
+input CongTrinhDTOInput {
+  id: BigInt
+  soNha: String
+  soTangSan: Float
+  soTangNha: Float
+  soHam: String
+  huongNhaId: Int
+  urlAnhMatTien: String
+  urlAnhTongThe: String
+  urlAnhMatNgang: String
+  loaiCongTrinhId: Int
+  mucDichSuDung: [Int]
+  danhSachAnh: [danhSachAnhCongTrinhInput]
+}
+
+type danhSachAnhCongTrinh {
+  loaiHinhAnh: String
+  url: String
+}
+
+input danhSachAnhCongTrinhInput {
+  loaiHinhAnh: String
+  url: String
+}
+
+type BatDongSanDTO {
+  chatLuongNhapLieu: String
+  dlDuAn: String
+  dlDuong: String
+  dlHoanhDoDanhDau: Float
+  dlHuyen: String
+  dlKhoangCachDenDuongOto: Float
+  dlKhoangCachTrucDuongChinh: Float
+  dlNgachHem: String
+  dlNgo: String
+  dlTenTrucDuongChinh: String
+  dlTinh: String
+  dlTungDoDanhDau: Float
+  dlUrlAnhDuongPhiaTruoc: String
+  dlUrlAnhKhac: String
+  dlUrlAnhMatBang: String
+  dlViTriId: BigInt
+  dlViTriTiepGiapId: BigInt
+  dlXa: String
+  duAnId: BigInt
+  duongId: BigInt
+  id: BigInt
+  mtGiaoThongId: BigInt
+  mtMatDoDanCuId: BigInt
+  mtThongTinLienLacId: BigInt
+  mtTinhTrangAnNinhTratTuId: BigInt
+  mtTinhTrangCapThoatNuocId: BigInt
+  mtTinhTrangHeThongDienId: BigInt
+  nguonNhapLieu: String
+  phuongXaId: BigInt
+  qmChieuDaiLonNhat: Float
+  qmChieuRongMatDuong: Float
+  qmChieuRongMatDuongBa: Float
+  qmChieuRongMatDuongHai: Float
+  qmChieuRongMatTien: Float
+  qmChieuRongViaHe: Float
+  qmHinhDangLoDatId: Int
+  qmTongDienTichDat: String
+  quanHuyenId: BigInt
+  srcAddress: String
+  thuaDat: String
+  thuaDatDinhGiaId: BigInt
+  tinhId: Int
+  urlAnhNgoaiBDS: String
+  urlAnhTrongBDS: String
+  tinh: AddressType
+  quanHuyen: AddressType
+  phuongXa: AddressType
+  duong: AddressType
+  trangThaiBds: [TrangThaiBDS]
+}
+
+input BatDongSanDTOInput {
+  chatLuongNhapLieu: String
+  dlDuAn: String
+  dlDuong: String
+  dlHoanhDoDanhDau: Float
+  dlHuyen: String
+  dlKhoangCachDenDuongOto: Float
+  dlKhoangCachTrucDuongChinh: Float
+  dlNgachHem: String
+  dlNgo: String
+  dlTenTrucDuongChinh: String
+  dlTinh: String
+  dlTungDoDanhDau: Float
+  dlUrlAnhDuongPhiaTruoc: String
+  dlUrlAnhKhac: String
+  dlUrlAnhMatBang: String
+  dlViTriId: BigInt
+  dlViTriTiepGiapId: BigInt
+  dlXa: String
+  duAnId: BigInt
+  duongId: BigInt
+  id: BigInt
+  mtGiaoThongId: BigInt
+  mtMatDoDanCuId: BigInt
+  mtThongTinLienLacId: BigInt
+  mtTinhTrangAnNinhTratTuId: BigInt
+  mtTinhTrangCapThoatNuocId: BigInt
+  mtTinhTrangHeThongDienId: BigInt
+  nguonNhapLieu: String
+  phuongXaId: BigInt
+  qmChieuDaiLonNhat: Float
+  qmChieuRongMatDuong: Float
+  qmChieuRongMatDuongBa: Float
+  qmChieuRongMatDuongHai: Float
+  qmChieuRongMatTien: Float
+  qmChieuRongViaHe: Float
+  qmHinhDangLoDatId: Int
+  qmTongDienTichDat: String
+  quanHuyenId: BigInt
+  srcAddress: String
+  thuaDat: String
+  thuaDatDinhGiaId: BigInt
+  tinhId: Int
+  urlAnhNgoaiBDS: String
+  urlAnhTrongBDS: String
+  trangThaiBds: [TrangThaiBDSInput]
+}
+
+type AddressType {
+  id: BigInt
+  tienTo: String
+  ten: String
+  tenDayDu: String
+  tenKhongDau: String
+  idDayDu: String
+  moTaThem: String
+  trangThai: String
+  nguon: String
+  maGop: String
+  centerLat: Float
+  centerLng: Float
+  bounds: String
+  listPhuongIds: String
+  danhSachAnh: String
+  nguoiTao: String
+  nguoiSua: String
+  thoiGianTao: String
+  thoiGianSua: String
+  boundary: String
+}
+
+type TrangThaiBDS {
+  id: Int
+  ten: String
+}
+
+input TrangThaiBDSInput {
+  id: Int
+  ten: String
+}
+
+type EstimateChiTietGia {
+  dienGiaiLoaiDat: String
+  dienTichKhongPhuHopQuyHoachKhac: Float
+  dienTichPhuHopQuyHoach: Float
+  dienTichQuyHoachLoGioi: Float
+  donGiaKhongPhuHopQuyHoachKhac: Float
+  donGiaPhuHopQuyHoach: Float
+  donGiaQuyHoachLoGioi: Float
+  giaTriKhongPhuHopQuyHoachKhac: Float
+  giaTriPhuHopQuyHoach: Float
+  giaTriQuyHoachLoGioi: Float
+}
+
+type EstimateOtherGia {
+  denDoanDuong: String
+  dienGiai: String
+  donGia: Float
+  giaTri: Float
+  tuDoanDuong: String
+}
+
+type EstimateGia {
+  canhBao: String
+  canhBaoQuyHoach: String
+  chiTietGias: [EstimateChiTietGia]
+  denDoanDuong: String
+  dienGiai: String
+  donGia: Float
+  giaTri: Float
+  otherGias: [EstimateOtherGia]
+  tuDoanDuong: String
+}
+
+type InfoUocLuongGia {
+  giaCTXD: EstimateGia
+  giaCTXDTinhThue: EstimateGia
+  giaDatMoHinh: EstimateGia
+  giaDatTinRao: String
+  idEstimate: BigInt
+  other: String
+  requestEstimate: String
+}
+
+type InfoQuyHoach {
+  batDongSanDinhGiaId: BigInt
+  boundary: String
+  canhBao: String
+  chiSoCapNhatGiaId: BigInt
+  chieuDaiThuaDat: Float
+  chieuRongMatDuong: Float
+  chieuRongMatDuong2: Float
+  chieuRongMatDuong3: Float
+  chieuRongMatDuongTruocMat: Float
+  chieuSauThuaDat: Float
+  dcDuong: String
+  dcDuong2: String
+  dcDuong3: String
+  dcPhuong: String
+  dcQuan: String
+  dcTinh: String
+  diaChi: String
+  dienTichDatCLN: Float
+  dienTichDatHNK: Float
+  dienTichDatNNP: Float
+  dienTichDatODT: Float
+  dienTichDatSKC: Float
+  dienTichDatTMD: Float
+  dienTichDatVLK: Float
+  dienTichKhongPhuHopQuyHoachQSDD: Float
+  dienTichNgoaiQuyHoach: Float
+  dienTichPhuHopQuyHoachQSDD: Float
+  dienTichQuyHoachLoGioiQSDD: Float
+  dienTichThuaDat: Float
+  dienTichTrongQuyHoach: Float
+  dienTichTrongQuyHoachKhac: Float
+  dieuChinhDacBiet: String
+  dieuChinhGiaMoHinhId: BigInt
+  dinhGiaBoi: String
+  doLechMoHinh: Float
+  doRongDuongLoGioi: Float
+  doRongDuongLoGioi2: Float
+  doRongDuongLoGioiQuyHoachQSDD: Float
+  doRongDuongLoGioiQuyHoachQSDD2: Float
+  doRongDuongQuyHoach: Float
+  doRongDuongQuyHoach2: Float
+  doanDuongId: BigInt
+  donGiaDat: Float
+  donGiaTamTinh: Float
+  donGiaTrungBinh: Float
+  duong2Id: BigInt
+  duong3Id: BigInt
+  duongId: BigInt
+  duongTheoBangGiaDat: String
+  giaDat: Float
+  giaDatChuaDieuChinh: String
+  giaDieuChinh: Float
+  giaMoHinh: Float
+  hinhDangLoDatId: BigInt
+  hoanhDoGps: Float
+  huongDat2Id: BigInt
+  huongDat3Id: BigInt
+  huongDatId: BigInt
+  id: BigInt
+  idBatDongSanNhapLieu: BigInt
+  idThuaDat: BigInt
+  idUserDuyetGia: BigInt
+  idUserTachThua: BigInt
+  isTachThua: BigInt
+  khuVucDieuChinhGiaId: BigInt
+  khungGiaId: BigInt
+  kichThuocMatTien: Float
+  kichThuocMatTien2: Float
+  kichThuocMatTien3: Float
+  kyHieuQuyHoach: String
+  kyHieuQuyHoachQSDD: String
+  laDatPhanLo: String
+  loaiBanDo: String
+  loaiBatDongSanMSBId: BigInt
+  maBanDoQuyHoach: String
+  maBanDoQuyHoachQSDD: String
+  maLoaiDat: String
+  maLoaiDatKhac: String
+  maThuaDat: String
+  matCatNgoNhoNhat: Float
+  moTaHuongBac: String
+  moTaHuongDong: String
+  moTaHuongDongBac: String
+  moTaHuongDongNam: String
+  moTaHuongNam: String
+  moTaHuongTay: String
+  moTaHuongTayBac: String
+  moTaHuongTayNam: String
+  ngach: String
+  ngo: String
+  nguonDiaChi: String
+  oldDuAnId: BigInt
+  oldDuongId: BigInt
+  oldPhuongXaId: BigInt
+  oldQuanHuyenId: BigInt
+  other: String
+  phuongId: BigInt
+  quadKeyL1: String
+  quadKeyL2: String
+  quadKeyL3: String
+  quadKeyL4: String
+  quadKeys: String
+  quanId: BigInt
+  soLo: String
+  soLuongBds: Int
+  soLuongCongTrinh: Int
+  soNha: String
+  soThua: String
+  soThuaCu: String
+  soToBanDo: String
+  soToBanDoCu: String
+  soYeuToDacBiet: BigInt
+  status: String
+  tamX: Float
+  tamY: Float
+  tenDoanDuong: String
+  tenDuongTheoBangGiaDat: String
+  thoiGianCrawl: String
+  thoiGianDieuChinh: String
+  thoiGianDinhGia: String
+  thoiGianDuyetGia: String
+  thoiGianSua: String
+  thoiGianTachThua: String
+  thoiGianTinhCongKhungGia: String
+  tinhId: Int
+  trangThaiGia: String
+  trangThaiLam8515: String
+  trangThaiThuaDat: String
+  tungDoGps: Float
+  tyLeDieuChinh: Float
+  urlAnhBanDoDiaChinh: String
+  urlAnhBanDoQuyHoach: String
+  userDuyetGia: String
+  userIdThamDinh: BigInt
+  userThamDinh: String
+  version: String
+  viTri: Int
+  viTri2: Int
+  viTri2Id: Int
+  viTri3: Int
+  viTri3Id: Int
+  viTriId: Int
+  viTriTheoBangGiaDat: Int
+  yeuToDieuChinhRieng: String
+  yeuToTrucTiepVt: String
+}
+
+type InfoThuaDat {
+  boundary: String
+  canhBao: String
+  canhBaoGia: String
+  chieuDaiThuaDat: Float
+  chieuRongMatDuong: Float
+  chieuRongMatDuong2: Float
+  chieuRongMatDuong3: Float
+  chieuRongMatDuongTruocMat: Float
+  coGia: Boolean
+  coQuyHoach: Boolean
+  dcDuong: String
+  dcPhuong: String
+  dcQuan: String
+  dcTinh: String
+  dienGiaiMaLoaiDat: String
+  dienTichDatNNP: Float
+  dienTichDatODT: Float
+  dienTichDatSKC: Float
+  dienTichDatTMD: Float
+  dienTichNgoaiQuyHoach: Float
+  dienTichThuaDat: Float
+  dienTichTrongQuyHoach: Float
+  dienTichTrongQuyHoachKhac: Float
+  donGiaDat: Float
+  duongId: BigInt
+  giaDat: Float
+  hasPrice: Boolean
+  hinhDangLoDatId: Int
+  hoanhDoGps: Float
+  huongDat2Id: Int
+  huongDat3Id: Int
+  huongDatId: Int
+  id: BigInt
+  kichThuocMatTien: Float
+  kichThuocMatTien2: Float
+  kichThuocMatTien3: Float
+  loaiBatDongSanMsbId: Int
+  maLoaiDat: String
+  matCatNgoNhoNhat: Float
+  phuongId: BigInt
+  phuongXaId: BigInt
+  quanId: BigInt
+  soThua: String
+  soToBanDo: String
+  tinhId: Int
+  tungDoGps: Float
+  urlAnhBanDoDiaChinh: String
+  viTri: Int
+  viTri2: Int
+  viTri3: Int
+  viTriId: Int
+  viTri2Id: Int
+  viTri3Id: Int
+}
+
+type PageTraCuuGiaHistory {
+  content: [SearchHistory]
+  totalElements: Int
+  totalPages: Int
+  size: Int
+}
+
+type SearchHistory {
+  id: BigInt
+  idBatDongSan: BigInt
+  idThuaDat: BigInt
+  diaChiTaiSan: String
+  giaTraCuu: Float
+  idUserTraCuu: BigInt
+  nameUserTraCuu: String
+  thoiGianTraCuu: BigInt
+}
+
+type Address {
+  id: BigInt
+  phuongId: BigInt
+  quanId: BigInt
+  ten: String
+  tenDayDu: String
+  tenKhongDau: String
+  tienTo: String
+  tinhId: Int
+}
+
+input ParamSearchBDS {
+  address: String
+  alley: BigInt
+  lane: BigInt
+  street: BigInt
+  ward: BigInt
+  district: BigInt
+  city: BigInt
+  so_to: String
+  so_thua: String
+  so_to_cu: String
+  so_thua_cu: String
+  top_left: GPSLocation
+  bottom_right: GPSLocation
+  only_street: Boolean
+}
+
+input GPSLocation {
+  lat: Float
+  lon: Float
+}
+
+type GPSInfo {
+  lat: Float
+  lon: Float
+}
+
+type PageResultSearchHouse {
+  duong: AddressCSearch
+  phuong_xa: AddressCSearch
+  quan_huyen: AddressCSearch
+  tinh: AddressCSearch
+  url_anh_mat_tien: String
+  so_nha: String
+  so_tang_nha: Int
+  src_address: String
+  id: BigInt
+  chieu_rong_mat_duong: Float
+  huong_nha: String
+  thua_dat_dinh_gia_id: BigInt
+}
+
+type AddressCSearch {
+  id: BigInt
+  id_day_du: String
+  ten: String
+  tien_to: String
+  tinh_id: BigInt
+  quan_id: BigInt
+  duong_id: BigInt
+}
+
+type ThongTinThuaDat {
+  id: BigInt
+  boundary: String
+  tamX: Float
+  tamY: Float
+  tungDoGps: Float
+  hoanhDoGps: Float
+}
+
+type SoLuotTraCuu {
+  soLuotTraCuuGia: BigInt
+  soLuotTraCuuQuyHoach: BigInt
+}
+
+input FirebaseTokenInput {
+  token: String
+  userId: BigInt
+  loaiThongBao: String
+}
+
+type ChiTietHoSoYeuCau {
+  id: BigInt
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  taiSanThamDinh: String
+  tenGoiNho: String
+  taiLieuLienQuan: [TaiLieuLienQuan]
+  loaiTaiSan: String
+  status: String
+  thoiGianYeuCau: String
+  yeuCauThamDinhSoBo: Boolean
+  yeuCauThamDinhToanBo: Boolean
+  chiTietThamDinh: ChiTietThamDinh
+  idCVKD: BigInt
+  nameCVKD: String
+  danhSachLogTrangThai: [LogTrangThaiHoSoYeuCau]
+  thoiGianXuLy: BigInt
+  infoCVKD: InfoUser
+  typeApp: String
+}
+
+type LogTrangThaiHoSoYeuCau {
+  idHoSoYeuCau: BigInt
+  logTrangThai: String
+  chiTiet: String
+  title: String
+  message: String
+  thoiGianTao: String
+}
+
+scalar JSON
+
+type PageYeuCauThamDinh {
+  content: [YeuCauThamDinh]
+  totalElements: Int
+  totalPages: Int
+}
+
+type YeuCauThamDinh {
+  id: BigInt
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  taiSanThamDinh: String
+  tenGoiNho: String
+  loaiTaiSan: String
+  status: String
+  thoiGianYeuCau: String
+  giaTriThamDinhTaiSan: BigInt
+  soHopDong: String
+}
+
+type ChiTietGoiTaiSan {
+  id: BigInt
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  taiSanThamDinh: String
+  tenGoi: String
+  taiLieuLienQuan: [TaiLieuLienQuan]
+  status: String
+  thoiGianYeuCau: String
+  yeuCauThamDinhSoBo: Boolean
+  yeuCauThamDinhToanBo: Boolean
+  danhSachHoSoYeuCau: [ChiTietHoSoYeuCau]
+}
+
+type ChiTietThamDinh {
+  taiSan: String
+  diaChi: String
+  chiTietThamDinhBatDongSan: ChiTietThamDinhBatDongSan
+  chiTietTongGiaTri: [TongGiaTriThanhPhan]
+  ghiChu: String
+  urlFileMem: [String]
+  urlFileScan: [String]
+  urlFileKetQuaSoBo: [String]
+}
+
+type TongGiaTriThanhPhan {
+  name: String
+  value: String
+  subDetail: String
+  priority: Int
+}
+
+type ChiTietThamDinhBatDongSan {
+  dat: ChiTietDat
+  ctxd: [ChiTietCTXD]
+}
+
+type ChiTietDat {
+  soTo: String
+  soThua: String
+  hinhDangLoDat: String
+  chiTiet: [ChiTietThanhPhanDat]
+}
+
+type ChiTietCTXD {
+  tenCongTrinh: String
+  soTang: String
+  loaiCongTrinh: String
+  chiTiet: [ChiTiet]
+}
+
+type ChiTiet {
+  key: String
+  value: String
+}
+
+type ChiTietThanhPhanDat {
+  key: String
+  value: ChiTietGiaTriThanhPhanDat
+}
+
+type ChiTietGiaTriThanhPhanDat {
+  dienTich: String
+  donGia: String
+  giaTri: String
+}
+
+type TaiLieuLienQuan {
+  edit: Boolean
+  type: String
+  loaiTaiLieu: String
+  hoSoYeuCauId: BigInt
+  goiTaiSanId: BigInt
+  batDongSanThamDinhId: BigInt
+  listIntoAlbum: [DanhSachURLTaiLieu]
+}
+
+type DanhSachURLTaiLieu {
+  data: String
+  url: String
+  format: String
+  name: String
+}
+
+type PhanHoiDanhGia {
+  id: BigInt
+  rate: BigInt
+  danhGia: String
+  idNguoiGui: BigInt
+  nameNguoiGui: String
+  thoiGianGui: BigInt
+  idHSYC: BigInt
+  idGoiTaiSan: BigInt
+}
+
+input PhanHoiDanhGiaInput {
+  id: BigInt
+  rate: BigInt
+  danhGia: String
+  idNguoiGui: BigInt
+  nameNguoiGui: String
+  idHSYC: BigInt
+  idGoiTaiSan: BigInt
+}
+
+type PagePhanHoiDanhGia {
+  content: [PhanHoiDanhGia]
+  totalElements: Int
+  totalPages: Int
+}
+
+enum StatusYeuCauThamDinh {
+  CHO_BO_SUNG_THONG_TIN
+  CHO_ADMIN_PHE_DUYET
+  CHO_TPKD_PHE_DUYET
+  CHO_PHAN_CONG
+  YEU_CAU_NVKD_CHINH_SUA
+  NVKD_DA_CHINH_SUA_CHO_TIEP_NHAN
+  CHO_NV_TIEP_NHAN
+  KHONG_PHE_DUYET
+  DANG_XU_LY
+  CHO_PHE_DUYET
+  DA_PHE_DUYET
+  CHO_PHE_DUYET_GIA_CAP_2
+  KHONG_PHE_DUYET_GIA_CAP_2
+  DA_PHE_DUYET_GIA_CAP_2
+  HOAN_THANH
+  CHO_TIN_DUNG_XAC_NHAN_GIA
+  TIN_DUNG_KHONG_DONG_Y_GIA
+  CHO_DE_XUAT_IN_AN
+  CHO_DUYET_IN
+  CHO_IN_AN
+  DA_IN_AN
+  DA_LUU_KHO
+  HUY_YEU_CAU
+  NULL
+  KHONG_PHE_DUYET_SO_BO
+}
+
+enum LoaiTaiSanThamDinh {
+  BAT_DONG_SAN
+  MAY_MOC_THIET_BI
+  TAI_SAN_DAC_THU
+  BDS_CB
+  GOI_BDS
+  MMTB_BDS
+  CAN_HO_DON_LE
+  GOI_CAN_HO_CHUNG_CU
+  MMTB_PTVT_DON_LE
+  DANH_MUC_MMTB_PTVT
+  KHACH_SAN_RESORT
+  DU_AN
+  CO_PHIEU
+  DOANH_NGHIEP
+  GOI_TAI_SAN
+  CHUNG_CU
+}
+
+input YeuCauThamDinhInput {
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  taiSanThamDinh: String
+  tenGoiNho: String
+  isGoiTaiSan: Boolean
+  isYeuCauSoBo: Boolean
+  idBatDongSan: BigInt
+}
+
+input AlbumTaiLieuInput {
+  goiTaiSanId: BigInt
+  hoSoYeuCauId: BigInt
+  type: String
+  edit: Boolean
+  batDongSanThamDinhId: BigInt
+  khaoSatTaiSanId: BigInt
+  loaiTaiLieu: String
+  listIntoAlbum: [TaiLieuLienQuanInput]
+}
+
+input TaiLieuLienQuanInput {
+  data: String
+  format: String
+  name: String
+}
+
+type ThongKeHieuSuatChung {
+  avgTimeProcess: soLieuVaTiLe
+  avgRate: Float
+  numOfHoSos: soLieuVaTiLe
+  sumFee: soLieuVaTiLe
+}
+
+type ThongKeHieuSuatThoiGianXuLy {
+  thongKeThoiGianXuLy: JSON
+  thongKeThoiGianXuLyChiTietTheoChuKy: JSON
+  thongKeThoiGianXuLySoBoTheoChuKy: JSON
+}
+
+type ThongKeTrangThaiTheoChuKy {
+  chu_ky: String
+  huy_yeu_cau: BigInt
+  khong_xac_dinh: BigInt
+  dang_xu_ly: BigInt
+  hoan_thanh: BigInt
+}
+
+type ThongKeHieuSuatHoSoThamDinh {
+  thongKeTrangThaiTheoChuKy: [ThongKeTrangThaiTheoChuKy]
+  thongKeLoaiTaiSan: JSON
+  thongKeSoLuongTheoChuKy: [ThongKeTheoHoSo]
+  thongKeTrangThai: JSON
+}
+
+type ThongKeHieuSuatPhiThamDinh {
+  thongKePhiThamDinh: JSON
+  thongKePhiThamDinhTheoLoaiTaiSan: JSON
+  thongKePhiThamDinhTheoChuKy: JSON
+}
+
+type ThongKeTheoHoSo {
+  chu_ky: String
+  tong: soLieuVaTiLe
+  chi_tiet: soLieuVaTiLe
+  so_bo: soLieuVaTiLe
+}
+
+type soLieuVaTiLe {
+  data: Float
+  rate: Float
+}
+
+type PageMessageNotification {
+  content: [MessageThayDoiTrangThaiHSYC]
+  totalElements: Int
+  totalPages: Int
+}
+
+type MessageThayDoiTrangThaiHSYC {
+  idHSYC: BigInt
+  idGoiTaiSan: BigInt
+  oldStatus: String
+  newStatus: String
+  message: String
+  title: String
+  createAt: String
+  timestamp: String
+  userId: BigInt
+  read: Boolean
+  _id: JSON
+  id: String
+}
+
+type StatusNewNotifications {
+  has_message_unread: Boolean
+  number_of_messages: BigInt
+}
+
+input YeuCauThamDinhFullInput {
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  taiSanThamDinh: String
+  mucDichThamDinh: String
+  loaiTaiSan: String
+  nguonThamDinh: String
+  nameTinDung: String
+  phoneTinDung: String
+  chiNhanhNganHang: String
+  phongGiaoDichNganHang: String
+  emailTinDung: String
+  phiThamDinh: BigInt
+  vat: Int
+  hoaDonGTGT: String
+  thoiGianXuatHoaDon: String
+  tongCong: BigInt
+  tamUng: BigInt
+  thoiGianThuPhiTD: String
+  chiPhiKhaoSat: BigInt
+  phiKhaoSatDaThu: BigInt
+  thoiGianThuPhiKS: String
+  phiThamDinhKhongVAT: Double
+  vatPhiThamDinh: Boolean
+  phiTamUngPhaiThu: Double
+  coBaoGomPhiKhaoSat: Boolean
+  chiNhanhId: BigInt
+  vanPhongId: BigInt
+  ghiChu: String
+  yeuCauThamDinhSoBo: Boolean
+  yeuCauThamDinhToanBo: Boolean
+}
+
+type ThongTinHoSoYeuCau {
+  id: BigInt
+  tenKH: String
+  diaChiKH: String
+  emailKH: String
+  soDT: String
+  soDTNVKDNhap: String
+  taiSanThamDinh: String
+  phapLy: String
+  yeuCauThamDinhSoBo: Boolean
+  yeuCauThamDinhToanBo: Boolean
+  loaiTaiSan: String
+  taiLieuLienQuan: [TaiLieuLienQuan]
+  mucDichThamDinh: String
+  mucDichThamDinhDTOList: [MucDichThamDinh]
+  nguonThamDinh: String
+  chiNhanhNganHangTinDung: String
+  chiNhanhNganHang: String
+  hoiSoNganHang: String
+  phongGiaoDichNganHang: String
+  phiThamDinh: BigInt
+  vat: Int
+  hoaDonGTGT: String
+  thoiGianXuatHoaDon: String
+  tongCong: BigInt
+  tamUng: BigInt
+  thoiGianThuPhiTD: String
+  chiPhiKhaoSat: BigInt
+  phiKhaoSatDaThu: BigInt
+  thoiGianThuPhiKS: String
+  phiThamDinhKhongVAT: Double
+  vatPhiThamDinh: Boolean
+  phiTamUngPhaiThu: Double
+  phiKhaoSatKhongVAT: Double
+  vatPhiKhaoSat: Boolean
+  tongPhiThucHien: Double
+  tongTienDaThu: Double
+  congNo: Double
+  coBaoGomPhiKhaoSat: Boolean
+  idCVKD: BigInt
+  nameCVKD: String
+  ghiChu: String
+  phanHoiCuaChuyenVien: String
+  ghiChuNguoiPhanCong: String
+  nameTinDung: String
+  phoneTinDung: String
+  emailTinDung: String
+  idNghiepVu: BigInt
+  infoNghiepVu: InfoUser
+  idKiemSoatVien: BigInt
+  infoKiemSoatVien: InfoUser
+  vanPhongId: BigInt
+  chiNhanhId: BigInt
+  hopDong: String
+  comments: [Comment]
+}
+
+type Comment {
+  content: String
+  idUserCreate: BigInt
+  nameUserCreate: String
+  thoiGianNhap: String
+}
+
+input ThongTinHoSoYeuCauInput {
+  id: BigInt
+  tenKH: String
+  diaChiKH: String
+  emailKH: String
+  soDT: String
+  soDTNVKDNhap: String
+  taiSanThamDinh: String
+  phapLy: String
+  yeuCauThamDinhSoBo: Boolean
+  yeuCauThamDinhToanBo: Boolean
+  loaiTaiSan: String
+  mucDichThamDinh: String
+  nguonThamDinh: String
+  chiNhanhNganHangTinDung: String
+  hoiSoNganHang: String
+  phongGiaoDichNganHang: String
+  phiThamDinhKhongVAT: Double
+  vatPhiThamDinh: Boolean
+  phiTamUngPhaiThu: Double
+  coBaoGomPhiKhaoSat: Boolean
+  idCVKD: BigInt
+  nameCVKD: String
+  ghiChu: String
+  phanHoiCuaChuyenVien: String
+  ghiChuNguoiPhanCong: String
+  nameTinDung: String
+  phoneTinDung: String
+  emailTinDung: String
+  vanPhongId: BigInt
+  chiNhanhId: BigInt
+  hoaDonGTGT: String
+  thoiGianXuatHoaDon: String
+}
+
+type PageHoSoNghiepVu {
+  content: [HoSoNghiepVu]
+  totalElements: Int
+  totalPages: Int
+}
+
+type HoSoNghiepVu {
+  id: BigInt
+  isYeuCauThamDinh: Boolean
+  isYeuCauSoBo: Boolean
+  thoiGianYeuCau: String
+  taiSanThamDinh: String
+  loaiTaiSan: String
+  giaTriTaiSan: String
+  nameNVKD: String
+  status: String
+  deadline: String
+  thoiGianTuChoi: String
+  vanPhongId: BigInt
+  batDongSanThamDinhId: BigInt
+  soHopDong: String
+  tenKH: String
+  soDT: String
+  emailKH: String
+  diaChiKH: String
+  coDiKhaoSat: Boolean
+}
+
+type KhaoSatTaiSanExtend {
+  id: BigInt
+  thoiGianHenKhaoSat: String
+  thoiGianKhaoSatThucTe: String
+  diaBan: String
+  coDiQuaDem: Boolean
+  tenNguoiHuongDan: String
+  sdtNguoiHuongDan: String
+  chuTaiSan: Boolean
+  hinhAnhNguoiHuongDan: String
+  idThongTinKhaoSat: BigInt
+  loaiTaiSan: String
+  idNguoiTao: BigInt
+  tenNguoiTao: String
+  thoiGianTao: String
+  idNguoiChinhSua: BigInt
+  tenNguoiChinhSua: String
+  thoiGianSua: String
+  thongTinKhachHang: String
+  diaChiTaiSan: String
+  albumHinhAnhTaiSan: AlbumHinhAnhTaiSan
+  taiLieuLienQuan: [TaiLieuLienQuan]
+  khaoSatCongTrinh: KhaoSatCongTrinh
+  khaoSatTaiSanThoCu: KhaoSatTaiSanThoCu
+  khaoSatThuaDat: KhaoSatThuaDat
+}
+
+type KhaoSatTaiSanThoCu {
+  id: BigInt
+  idBatDongSan: BigInt
+  tinhId: BigInt
+  tinh: String
+  quanHuyenId: BigInt
+  tienToTinh: String
+  tienToQuanHuyen: String
+  tienToPhuongXa: String
+  tienToDuong: String
+  tienToNgo: String
+  tienToNgach: String
+  quanHuyen: String
+  phuongXaId: BigInt
+  phuongXa: String
+  duongId: BigInt
+  duong: String
+  ngoId: BigInt
+  ngo: String
+  ngachId: BigInt
+  ngach: String
+  soNha: String
+  lat: Float
+  lon: Float
+  diaChiTaiSan: String
+}
+
+type KhaoSatCongTrinh {
+  id: BigInt
+  soTang: Float
+  huongId: BigInt
+  huongCongTrinh: String
+  loaiCongTrinhId: BigInt
+  loaiCongTrinh: String
+  tinhTrangCongTrinhId: BigInt
+  tinhTrangCongTrinh: String
+  hienTrangSuDung: String
+  dienTichSuDung: Float
+  khaoSatTaiSanThoCuId: BigInt
+}
+
+type KhaoSatThuaDat {
+  id: BigInt
+  idThuaDat: BigInt
+  doRongViaHe: Float
+  chatLieuDuongId: Int
+  chatLieuDuong: String
+  moTaDuongTruocMat: String
+  soTo: String
+  soThua: String
+  hinhDangThuaDatId: BigInt
+  hinhDangThuaDat: String
+  dienTich: Float
+  dienTichDatO: Float
+  dienTichDatSKC: Float
+  dienTichDatTMD: Float
+  dienTichDatNNP: Float
+  chieuRongMatTien: Float
+  doRongDuong: Float
+  doRongLongDuong: Float
+  viTriId: Int
+  viTri: Int
+  huongId: Int
+  huong: String
+  chieuRongMatTien2: Float
+  doRongDuong2: Float
+  viTriId2: Int
+  viTri2: Int
+  huongId2: Int
+  huong2: String
+  chieuRongMatTien3: Float
+  doRongDuong3: Float
+  viTriId3: Int
+  viTri3: Int
+  huongId3: Int
+  huong3: String
+  khaoSatTaiSanThoCuId: BigInt
+}
+
+type AlbumHinhAnhTaiSan {
+  id: BigInt
+  ten: String
+  thoiGianTao: String
+  idNguoiTao: BigInt
+  thoiGianSua: String
+  idNguoiSua: BigInt
+  idKhaoSatTaiSan: BigInt
+  trangThai: Boolean
+  hinhAnhTaiSan: [HinhAnhTaiSan]
+}
+
+type HinhAnhTaiSan {
+  id: BigInt
+  ten: String
+  url: String
+  loaiHinhAnh: String
+  thoiGianTao: String
+  idNguoiTao: BigInt
+  idAlbum: BigInt
+  trangThai: Boolean
+  format: String
+  base64String: String
+}
+
+input KhaoSatTaiSanExtendInput {
+  id: BigInt
+  thoiGianHenKhaoSat: String
+  thoiGianKhaoSatThucTe: String
+  diaBan: String
+  coDiQuaDem: Boolean
+  tenNguoiHuongDan: String
+  sdtNguoiHuongDan: String
+  chuTaiSan: Boolean
+  hinhAnhNguoiHuongDan: String
+  idThongTinKhaoSat: BigInt
+  loaiTaiSan: String
+  idNguoiTao: BigInt
+  tenNguoiTao: String
+  thoiGianTao: String
+  idNguoiChinhSua: BigInt
+  tenNguoiChinhSua: String
+  thoiGianSua: String
+  thongTinKhachHang: String
+  diaChiTaiSan: String
+  danhSachAlbumTaiLieu: [AlbumTaiLieuInput]
+  albumHinhAnhTaiSan: AlbumHinhAnhTaiSanInput
+  khaoSatCongTrinh: KhaoSatCongTrinhInput
+  khaoSatTaiSanThoCu: KhaoSatTaiSanThoCuInput
+  khaoSatThuaDat: KhaoSatThuaDatInput
+}
+
+input KhaoSatTaiSanThoCuInput {
+  id: BigInt
+  idBatDongSan: BigInt
+  tinhId: BigInt
+  tinh: String
+  quanHuyenId: BigInt
+  tienToTinh: String
+  tienToQuanHuyen: String
+  tienToPhuongXa: String
+  tienToDuong: String
+  tienToNgo: String
+  tienToNgach: String
+  quanHuyen: String
+  phuongXaId: BigInt
+  phuongXa: String
+  duongId: BigInt
+  duong: String
+  ngoId: BigInt
+  ngo: String
+  ngachId: BigInt
+  ngach: String
+  soNha: String
+  lat: Float
+  lon: Float
+  diaChiTaiSan: String
+}
+
+input KhaoSatCongTrinhInput {
+  id: BigInt
+  soTang: Float
+  huongId: BigInt
+  huongCongTrinh: String
+  loaiCongTrinhId: BigInt
+  loaiCongTrinh: String
+  tinhTrangCongTrinhId: BigInt
+  tinhTrangCongTrinh: String
+  hienTrangSuDung: String
+  dienTichSuDung: Float
+  khaoSatTaiSanThoCuId: BigInt
+}
+
+input KhaoSatThuaDatInput {
+  id: BigInt
+  idThuaDat: BigInt
+  doRongViaHe: Float
+  chatLieuDuongId: Int
+  chatLieuDuong: String
+  moTaDuongTruocMat: String
+  soTo: String
+  soThua: String
+  hinhDangThuaDatId: BigInt
+  hinhDangThuaDat: String
+  dienTich: Float
+  dienTichDatO: Float
+  dienTichDatSKC: Float
+  dienTichDatTMD: Float
+  dienTichDatNNP: Float
+  chieuRongMatTien: Float
+  doRongDuong: Float
+  doRongLongDuong: Float
+  viTriId: Int
+  viTri: Int
+  huongId: Int
+  huong: String
+  chieuRongMatTien2: Float
+  doRongDuong2: Float
+  viTriId2: Int
+  viTri2: Int
+  huongId2: Int
+  huong2: String
+  chieuRongMatTien3: Float
+  doRongDuong3: Float
+  viTriId3: Int
+  viTri3: Int
+  huongId3: Int
+  huong3: String
+  khaoSatTaiSanThoCuId: BigInt
+}
+
+input AlbumHinhAnhTaiSanInput {
+  id: BigInt
+  ten: String
+  thoiGianTao: String
+  idNguoiTao: BigInt
+  thoiGianSua: String
+  idNguoiSua: BigInt
+  idKhaoSatTaiSan: BigInt
+  trangThai: Boolean
+  hinhAnhTaiSan: [HinhAnhTaiSanInput]
+}
+
+input HinhAnhTaiSanInput {
+  id: BigInt
+  ten: String
+  url: String
+  loaiHinhAnh: String
+  thoiGianTao: String
+  idNguoiTao: BigInt
+  idAlbum: BigInt
+  trangThai: Boolean
+  format: String
+  base64String: String
+}
+
+input BdsSubmitInput {
+  batDongSanDTO: BatDongSanDTOInput
+}
+
+type IdBds {
+  id: BigInt
+}
+
+type SuggestAddress {
+  idAddress: BigInt
+  categoryType: String
+  tinhId: BigInt
+  quanId: BigInt
+  phuongId: BigInt
+  duongId: BigInt
+  from: String
+  tieuDe: String
+  thuaDatDinhGiaId: BigInt
+}
+
+type InfoViTriThuaDat {
+  bbox: String
+  center: GPSInfo
+  duongId: BigInt
+  phuongId: BigInt
+  quanId: BigInt
+  tinhId: BigInt
+  idThuaDat: BigInt
+  soToBando: String
+  soThua: String
+}
+
+type InfoTaiSan {
+  infoBatDongSan: [InfoBatDongSan]
+  infoThuaDatDinhGia: ThongTinThuaDat
+}
+
+type InfoBatDongSan {
+  congTrinhSubmitDTOSet: CongTrinhSubmitDTOSet
+  batDongSanDTO: BatDongSanDTO
+}
+
+type InfoKhuVuc {
+  boundary: String
+  bounds: String
+  centerLat: Double
+  centerLng: Double
+  id: BigInt
+  idDayDu: String
+  isThuocPhuongXa: Boolean
+  maGop: String
+  moTaThem: String
+  nguon: String
+  phuongXaId: BigInt
+  quanId: BigInt
+  ten: String
+  tenDayDu: String
+  tenKhongDau: String
+  tienTo: String
+}
