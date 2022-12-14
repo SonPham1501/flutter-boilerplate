@@ -1,3 +1,4 @@
+import 'package:base_graphql/base_graphql.dart';
 import 'package:base_navigation/base_navigation.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -36,6 +37,7 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(DioClient(getIt<Dio>()));
   getIt.registerSingleton(RestClient());
   getIt.registerSingleton(Navigation());
+  getIt.registerSingleton(GraphQLApiClient(uri: ''));
 
   // api's:---------------------------------------------------------------------
   getIt.registerSingleton(PostApi(getIt<DioClient>(), getIt<RestClient>()));

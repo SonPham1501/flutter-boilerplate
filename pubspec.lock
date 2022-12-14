@@ -93,6 +93,15 @@ packages:
       url: "https://github.com/SonPham1501/flutter-base-graphql.git"
     source: git
     version: "0.0.1"
+  base_https:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "73eb512b5f7170106e7882c00863ffda6f6823cb"
+      url: "https://github.com/SonPham1501/flutter-base-https.git"
+    source: git
+    version: "0.0.1"
   base_navigation:
     dependency: "direct main"
     description:
@@ -779,6 +788,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  mime_type:
+    dependency: transitive
+    description:
+      name: mime_type
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   mobx:
     dependency: "direct main"
     description:

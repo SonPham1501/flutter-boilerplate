@@ -23,8 +23,7 @@ abstract class NetworkModule {
       ))
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest: (RequestOptions options,
-              RequestInterceptorHandler handler) async {
+          onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
             // getting token
             var token = await sharedPrefHelper.authToken;
 

@@ -115,9 +115,10 @@ dependencies:
     git:
       url: https://github.com/SonPham1501/flutter-base-graphql.git
 
-  base_widgets:
+  base_https:
     git:
-      url: https://github.com/SonPham1501/flutter-base-widgets.git
+      url: https://github.com/SonPham1501/flutter-base-https.git
+
 
 dev_dependencies:
   flutter_test:
