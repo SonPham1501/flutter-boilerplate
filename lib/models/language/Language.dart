@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class Language {
   /// the country code (IT,AF..)
   String? code;

@@ -71,7 +71,7 @@ abstract class _UserStore with Store {
         isLoggedIn = true;
         success = true;
       } else {
-        print('failed to login');
+        debugPrint('failed to login');
       }
     }).catchError((e) {
       debugPrint(e);
