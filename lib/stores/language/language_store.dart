@@ -28,7 +28,7 @@ abstract class _LanguageStore with Store {
 
   // constructor:---------------------------------------------------------------
   _LanguageStore(Repository repository)
-      : this._repository = repository {
+      : _repository = repository {
     init();
   }
 
@@ -50,7 +50,7 @@ abstract class _LanguageStore with Store {
 
   @action
   String getCode() {
-    var code;
+    String code;
 
     if (_locale == 'en') {
       code = "US";
@@ -58,6 +58,8 @@ abstract class _LanguageStore with Store {
       code = "DK";
     } else if (_locale == 'es') {
       code = "ES";
+    } else {
+      code = "US";
     }
 
     return code;
