@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_boilerplate/constants/env_configs.dart';
-import 'package:flutter_boilerplate/ui/my_app.dart';
 
 import 'constants/enum.dart';
+import 'constants/env_configs.dart';
 import 'di/components/service_locator.dart';
+import 'ui/my_app.dart';
 
 void bootstraps({required Environment environment}) async {
   WidgetsFlutterBinding.ensureInitialized();
